@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+				{
+					"value": "$(pkg-config\t--cflags\t--libs\topencv4)",
+					"quoting": "escape"
+				},
+				"-g",
+				"${file}",
+				"-std=c++17",
+				"-stdlib=libc++",
+				"-o",
+				"${fileDirname}/bin/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
