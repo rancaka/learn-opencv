@@ -1,71 +1,10 @@
 #include <iostream>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
+#include "join_images_helper.hpp"
 
 using namespace std;
 using namespace cv;
-
-Mat hstack(Mat * matrices, int arrayCount)
-{
-    Mat output;
-
-    for (int i = 0; i < arrayCount; i ++)
-    {
-        Mat m = matrices[i];
-        if (output.rows > m.rows)
-        {
-            if (m.cols == 0)
-                continue;
-
-            Mat add = Mat::zeros(Size(m.cols, output.rows-m.rows), CV_8UC3);
-            vconcat(m, add, m);
-        } else if (m.rows > output.rows)
-        {
-            if (output.cols == 0)
-            {
-                output = m;
-                continue;
-            }
-            Mat add = Mat::zeros(Size(output.cols, m.rows-output.rows), CV_8UC3);
-            vconcat(output, add, output);
-        }
-
-        hconcat(output, m, output);
-    }
-
-    return output;
-}
-
-Mat vstack(Mat * matrices, int arrayCount)
-{
-    Mat output;
-
-    for (int i = 0; i < arrayCount; i ++)
-    {
-        Mat m = matrices[i];
-        if (output.cols > m.cols)
-        {
-            if (m.rows == 0)
-                continue;
-
-            Mat add = Mat::zeros(Size(m.rows, output.cols-m.cols), CV_8UC3);
-            hconcat(m, add, m);
-        } else if (m.cols > output.cols)
-        {
-            if (output.rows == 0)
-            {
-                output = m;
-                continue;
-            }
-            Mat add = Mat::zeros(Size(output.rows, m.cols-output.cols), CV_8UC3);
-            hconcat(output, add, output);
-        }
-
-        vconcat(output, m, output);
-    }
-
-    return output;
-}
 
 int main()
 {
