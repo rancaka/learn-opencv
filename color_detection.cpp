@@ -40,15 +40,9 @@ int main()
         inRange(jonas_hsv, lower, upper, jonas_mask);
         bitwise_and(jonas, jonas, jonas_coat, jonas_mask);
         
-        Mat h_matrices[2] = { jonas, jonas_hsv };
-        Mat upper_horizontal(hstack(h_matrices, 2));
-
-        h_matrices[0] = jonas_mask;
-        h_matrices[1] = jonas_coat;
-        Mat lower_horizontal(hstack(h_matrices, 2));
-
-        Mat v_matrices[2] = { upper_horizontal, lower_horizontal };
-        Mat all(vstack(v_matrices, 2));
+        Mat upper_horizontal(hstack({ jonas, jonas_hsv }));
+        Mat lower_horizontal(hstack({ jonas_mask, jonas_coat }));
+        Mat all(vstack({ upper_horizontal, lower_horizontal }));
 
         imshow("Jonas", all);
         cout << hue_min << " " << hue_max << " "   << sat_min << " " << sat_max << " " << val_min << " " << val_max << endl;

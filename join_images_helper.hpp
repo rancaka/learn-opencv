@@ -1,6 +1,8 @@
+#include <initializer_list>
 #include <opencv2/core.hpp>
 
+using namespace std;
 using namespace cv;
 
-Mat hstack(Mat * matrices, int arrayCount);
-Mat vstack(Mat * matrices, int arrayCount);
+Mat hstack(initializer_list<Mat>);
+Mat vstack(initializer_list<Mat>);
