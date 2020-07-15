@@ -10,10 +10,10 @@
 					"value": "$(pkg-config\t--cflags\t--libs\topencv4)",
 					"quoting": "escape"
                 },
-                "join_images_helper.cpp",
+                "2_join_images_helper.cpp",
 				"-g",
 				"${file}",
-				"-std=c++17",
+				"-std=c++2a",
 				"-stdlib=libc++",
 				"-o",
 				"${fileDirname}/bin/${fileBasenameNoExtension}"
